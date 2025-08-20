@@ -4,7 +4,7 @@ try:
     conn = psycopg2.connect(
         dbname="mvc_3a",
         user="postgres",
-        passwoord="wcc@2024",
+        password="wcc@2023",
         host="localhost",
         port="5432"
     )

@@ -1,6 +1,5 @@
 #Refatorando o módulo para adequação a interface do thinker
 from database.db import Database
-
 from models.livro import Livro
 
 class LivroController:
@@ -51,7 +50,7 @@ class LivroController:
             else:
                 print("Erro ao conectar ao banco de dados")
 
-    def listar_livros(self, livros):
+    def listar_livros(self):
             #self.view.mostrar_livros(livros)
         conn = self.db.connect()
         livros = []
