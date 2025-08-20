@@ -1,5 +1,8 @@
+#Refatorando o módulo para adequação a interface do thinker
 from database.db import Database
-from views.livro_view import LivroView
+
+from models.livro import Livro
+
 class LivroController:
     def __init__(self, db_config):
         self.db = Database(
@@ -10,7 +13,7 @@ class LivroController:
             db_config["port"]
         )
         self.criar_tabela_se_nao_existir()
-        self.view = LivroView()
+        #self.view = LivroView()
     
     def criar_tabela_se_nao_existir(self):
         conn = self.db.connect()
@@ -28,8 +31,8 @@ class LivroController:
             conn.commit()
             cur.close()
             conn.close()
-
-        def adiciona_livro(self, id, titulo, autor, ano, isbn):
+            
+    def adiciona_livro(self, id, titulo, autor, ano, isbn):
             conn = self.db.connect()
             if conn:
                 cur = conn.cursor() #cur é um objeto criado a partir de uma conexão com o banco de dados
@@ -48,7 +51,15 @@ class LivroController:
             else:
                 print("Erro ao conectar ao banco de dados")
 
-        def listar_livros(self, livros):
-            self.view.mostrar_livros(livros)
-        
-        
+    def listar_livros(self, livros):
+            #self.view.mostrar_livros(livros)
+        conn = self.db.connect()
+        livros = []
+        if conn:
+            cur = conn.cursor()
+            cur.execute("SELECT id, titulo, autor, ano, isbn FROM livros ORDER BY id;")
+            for linha in cur.fetchall():
+                livros.append(Livro(*linha))
+            cur.close()
+            conn.close()
+        return livros

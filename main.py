@@ -2,7 +2,7 @@ from controllers.livro_controller import LivroController
 
 def main():
     db_config = {
-        "dbname": "introd_mvc",
+        "dbname": "mvc_3a",
         "user": "postgres",
         "password": "wcc@2024",
         "host": "localhost",
