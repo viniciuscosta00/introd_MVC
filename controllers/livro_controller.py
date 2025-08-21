@@ -39,7 +39,7 @@ class LivroController:
                 cur.execute(
                     #%s é um placehouder que será substituido pelos valores da tupla a seguir
                     # O psycopg2 substitui esse %s por valores reais de forma segura, evitando injeção de SQL
-                    "INSERT INTO livros(id, titulo, autor, ano, isbn) VALUES (%s, %s, %s, %s, %s) ON CONFLICT (id) DO NOTHING;",
+                    "INSERT INTO livros(id, titulo, autor, ano, isbn)VALUES (%s, %s, %s, %s, %s) ON CONFLICT (id) DO NOTHING;",
                             (id, titulo, autor, ano, isbn)
                             
                 )
@@ -62,3 +62,4 @@ class LivroController:
             cur.close()
             conn.close()
         return livros
+    
